@@ -26,9 +26,9 @@
           date: date,
           dateString: obj.date,
           labourDonations: 0,
-          liberalDonations: 0,
+          coalitionDonations: 0,
           laborPollPercentage: null,
-          liberalPollPercentage: null
+          coalitionPollPercentage: null
         };
       }
 
@@ -39,7 +39,7 @@
         obj.party.toUpperCase() == 'LIB' ||
         obj.party.toUpperCase() == 'NAT'
       ) {
-        dates[obj.date].liberalDonations += obj.amount;
+        dates[obj.date].coalitionDonations += obj.amount;
       }
     });
 
@@ -58,7 +58,7 @@
         pollObject = {
           date: date,
           labor: 0,
-          liberal: 0
+          coalition: 0
         };
       }
 
@@ -68,7 +68,7 @@
         if (party === 'ALP') {
           pollObject.labor = amount;
         } else if (party === 'COALITION') {
-          pollObject.liberal = amount;
+          pollObject.coalition = amount;
         }
 
         polls[dateString] = pollObject;
@@ -100,18 +100,18 @@
       if (dateObj.matchingPolls.length) {
         var laborSum = 0;
         var laborCount = 0;
-        var liberalSum = 0;
-        var liberalCount = 0;
+        var coalitionSum = 0;
+        var coalitionCount = 0;
 
         _.each(dateObj.matchingPolls, function(pollObj) {
           laborSum += pollObj.labor;
           laborCount++;
 
-          liberalSum += pollObj.liberal;
-          liberalCount++;
+          coalitionSum += pollObj.coalition;
+          coalitionCount++;
 
           dateObj.laborPollPercentage = Math.floor(laborSum / laborCount);
-          dateObj.liberalPollPercentage = Math.floor(liberalSum / liberalCount);
+          dateObj.coalitionPollPercentage = Math.floor(coalitionSum / coalitionCount);
         });
       }
       return dateObj;
@@ -172,7 +172,7 @@
         name: 'Total donations to the Coalition',
         color: '#AA4643',
         type: 'column',
-        data: _.pluck(orderedDates, 'liberalDonations')
+        data: _.pluck(orderedDates, 'coalitionDonations')
       },
         {
           name: '2 Party Preferred - Labor',
@@ -186,12 +186,12 @@
           }
         },
         {
-        name: '2 Party Preferred - Liberal',
+        name: '2 Party Preferred - Coalition',
         type: 'spline',
         color: '#be7371',
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'liberalPollPercentage'),
+        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
         marker: {
           enabled: false
         }
@@ -251,7 +251,7 @@
 //        name: 'Total donations to the Coalition',
 //        color: '#AA4643',
 //        type: 'column',
-//        data: _.pluck(orderedDates, 'liberalDonations')
+//        data: _.pluck(orderedDates, 'coalitionDonations')
 //      },
         {
         name: '2 Party Preferred - Labor',
@@ -265,12 +265,12 @@
         }
       },
 //        {
-//        name: '2 Party Preferred - Liberal',
+//        name: '2 Party Preferred - Coalition',
 //        type: 'spline',
 //        color: '#be7371',
 //        yAxis: 1,
 //        xAxis: 1,
-//        data: _.pluck(orderedDates, 'liberalPollPercentage'),
+//        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
 //        marker: {
 //          enabled: false
 //        }
@@ -332,7 +332,7 @@
         name: 'Total donations to the Coalition',
         color: '#AA4643',
         type: 'column',
-        data: _.pluck(orderedDates, 'liberalDonations')
+        data: _.pluck(orderedDates, 'coalitionDonations')
       },
 //        {
 //          name: '2 Party Preferred - Labor',
@@ -346,12 +346,12 @@
 //          }
 //        },
         {
-        name: '2 Party Preferred - Liberal',
+        name: '2 Party Preferred - Coalition',
         type: 'spline',
         color: '#be7371',
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'liberalPollPercentage'),
+        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
         marker: {
           enabled: false
         }
