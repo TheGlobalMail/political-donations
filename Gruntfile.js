@@ -256,12 +256,12 @@ module.exports = function(grunt) {
     cdn: {
       dist: {
         src: ['<%= project.dist %>/index.html'],
-        cdn: 'http://political-donations-assets.theglobalmail.org'
+        cdn: 'http://political-donations.theglobalmail.org'
       },
 
       staging: {
         src: ['<%= cdn.dist.src %>'],
-        cdn: 'http://political-donations-staging-assets.theglobalmail.org'
+        cdn: 'http://political-donations-staging.theglobalmail.org'
       }
     },
 
