@@ -119,7 +119,12 @@
   };
 
   var insertTwoPartyComparisonChart = function() {
-    $('#two-party-comparison-container').highcharts({
+    var red = '#AA4643';
+    var paleRed = '#be7371';
+    var blue = '#4572A7';
+    var paleBlue = '#7294bc';
+
+    var defaultOptions = {
       chart: {
         type: 'column'
       },
@@ -164,200 +169,82 @@
       ],
       series: [{
         name: 'Total donations to the ALP',
-        color: '#4572A7',
+        color: red,
         type: 'column',
         data: _.pluck(orderedDates, 'labourDonations')
-      },
-        {
+      }, {
         name: 'Total donations to the Coalition',
-        color: '#AA4643',
+        color: blue,
         type: 'column',
         data: _.pluck(orderedDates, 'coalitionDonations')
-      },
-        {
-          name: '2 Party Preferred - Labor',
-          type: 'spline',
-          color: '#7294bc',
-          yAxis: 1,
-          xAxis: 1,
-          data: _.pluck(orderedDates, 'laborPollPercentage'),
-          marker: {
-            enabled: false
-          }
-        },
-        {
-        name: '2 Party Preferred - Coalition',
-        type: 'spline',
-        color: '#be7371',
-        yAxis: 1,
-        xAxis: 1,
-        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
-        marker: {
-          enabled: false
-        }
-      }
-      ]
-    });
-
-    $('#labor-container').highcharts({
-      chart: {
-        type: 'column'
-      },
-      credits: {
-        enabled: false
-      },
-      title: {
-        text: 'LABOR - Donations VS Two-party preferred'
-      },
-      xAxis: [
-        {
-          categories: _.pluck(orderedDates, 'dateString'),
-          labels: {
-            rotation: -90,
-            step: 3,
-            y: 40
-          }
-        },
-        {
-          opposite: true,
-          categories: _.pluck(orderedDates, 'dateString'),
-          labels: {
-            enabled: false
-          }
-        }
-      ],
-      yAxis: [
-        { // Primary yAxis
-          title: {
-            text: 'Donations'
-          }
-        }, { // Secondary yAxis
-          gridLineWidth: 0,
-          title: {
-            text: '2 Party Preferred Poll'
-          },
-          max: 50,
-          min: 10,
-          opposite: true
-        }
-      ],
-      series: [{
-        name: 'Total donations to the ALP',
-        color: '#4572A7',
-        type: 'column',
-        data: _.pluck(orderedDates, 'labourDonations')
-      },
-//        {
-//        name: 'Total donations to the Coalition',
-//        color: '#AA4643',
-//        type: 'column',
-//        data: _.pluck(orderedDates, 'coalitionDonations')
-//      },
-        {
+      }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
-        color: '#7294bc',
+        color: paleRed,
         yAxis: 1,
         xAxis: 1,
         data: _.pluck(orderedDates, 'laborPollPercentage'),
         marker: {
           enabled: false
         }
-      },
-//        {
-//        name: '2 Party Preferred - Coalition',
-//        type: 'spline',
-//        color: '#be7371',
-//        yAxis: 1,
-//        xAxis: 1,
-//        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
-//        marker: {
-//          enabled: false
-//        }
-//      }
-      ]
-    });
-
-    $('#coalition-container').highcharts({
-      chart: {
-        type: 'column'
-      },
-      credits: {
-        enabled: false
-      },
-      title: {
-        text: 'COALITION - Donations VS Two-party preferred'
-      },
-      xAxis: [
-        {
-          categories: _.pluck(orderedDates, 'dateString'),
-          labels: {
-            rotation: -90,
-            step: 3,
-            y: 40
-          }
-        },
-        {
-          opposite: true,
-          categories: _.pluck(orderedDates, 'dateString'),
-          labels: {
-            enabled: false
-          }
-        }
-      ],
-      yAxis: [
-        { // Primary yAxis
-          title: {
-            text: 'Donations'
-          },
-          max: 7000000
-        }, { // Secondary yAxis
-          gridLineWidth: 0,
-          title: {
-            text: '2 Party Preferred Poll'
-          },
-          max: 50,
-          min: 10,
-          opposite: true
-        }
-      ],
-      series: [
-//      {
-//        name: 'Total donations to the ALP',
-//        color: '#4572A7',
-//        type: 'column',
-//        data: _.pluck(orderedDates, 'labourDonations')
-//      },
-        {
-        name: 'Total donations to the Coalition',
-        color: '#AA4643',
-        type: 'column',
-        data: _.pluck(orderedDates, 'coalitionDonations')
-      },
-//        {
-//          name: '2 Party Preferred - Labor',
-//          type: 'spline',
-//          color: '#7294bc',
-//          yAxis: 1,
-//          xAxis: 1,
-//          data: _.pluck(orderedDates, 'laborPollPercentage'),
-//          marker: {
-//            enabled: false
-//          }
-//        },
-        {
+      }, {
         name: '2 Party Preferred - Coalition',
         type: 'spline',
-        color: '#be7371',
+        color: paleBlue,
         yAxis: 1,
         xAxis: 1,
         data: _.pluck(orderedDates, 'coalitionPollPercentage'),
         marker: {
           enabled: false
         }
-      }
-      ]
-    });
+      }]
+    };
+
+    $('#two-party-comparison-container').highcharts(defaultOptions);
+
+    $('#labor-container').highcharts(_.extend(defaultOptions, {
+      title: {
+        text: 'LABOR - Donations VS Two-party preferred'
+      },
+      series: [{
+        name: 'Total donations to the ALP',
+        color: red,
+        type: 'column',
+        data: _.pluck(orderedDates, 'labourDonations')
+      }, {
+        name: '2 Party Preferred - Labor',
+        type: 'spline',
+        color: paleRed,
+        yAxis: 1,
+        xAxis: 1,
+        data: _.pluck(orderedDates, 'laborPollPercentage'),
+        marker: {
+          enabled: false
+        }
+      }]
+    }));
+
+    $('#coalition-container').highcharts(_.extend(defaultOptions, {
+      title: {
+        text: 'COALITION - Donations VS Two-party preferred'
+      },
+      series: [{
+        name: 'Total donations to the Coalition',
+        color: blue,
+        type: 'column',
+        data: _.pluck(orderedDates, 'coalitionDonations')
+      }, {
+        name: '2 Party Preferred - Coalition',
+        type: 'spline',
+        color: paleBlue,
+        yAxis: 1,
+        xAxis: 1,
+        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
+        marker: {
+          enabled: false
+        }
+      }]
+    }));
   };
 
   var init = function() {
