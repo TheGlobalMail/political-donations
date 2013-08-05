@@ -25,7 +25,7 @@
         dates[obj.date] = {
           date: date,
           dateString: obj.date,
-          labourDonations: 0,
+          laborDonations: 0,
           coalitionDonations: 0,
           laborPollPercentage: null,
           coalitionPollPercentage: null
@@ -33,7 +33,7 @@
       }
 
       if (obj.party.toUpperCase() == 'ALP') {
-        dates[obj.date].labourDonations += obj.amount;
+        dates[obj.date].laborDonations += obj.amount;
       }
       if (
         obj.party.toUpperCase() == 'LIB' ||
@@ -49,35 +49,13 @@
 
     earliestDate = orderedDates[0].date;
 
-    _.each(tgm.data.polls, function(obj) {
-      var dateString = obj[1];
-      var pollObject = polls[dateString];
-      if (!pollObject) {
-        var splitString = dateString.split('-');
-        var date = new Date(splitString[0], splitString[1], splitString[2]);
-        pollObject = {
-          date: date,
-          labor: 0,
-          coalition: 0
-        };
-      }
-
-      if (pollObject.date >= earliestDate) {
-        var party = obj[2].toUpperCase();
-        var amount = obj[3];
-        if (party === 'ALP') {
-          pollObject.labor = amount;
-        } else if (party === 'COALITION') {
-          pollObject.coalition = amount;
-        }
-
-        polls[dateString] = pollObject;
-      }
-    });
-
-    orderedPolls = _.sortBy(polls, function(obj) {
+    orderedPolls = _(tgm.data.polls).map(function(obj) {
+      var splitString = obj.dateString.split('-');
+      obj.date = new Date(splitString[0], splitString[1], splitString[2]);
+      return obj;
+    }).sortBy(function(obj) {
       return +obj.date;
-    });
+    }).value();
 
     // Group the poll data by donation data point
     var previousDate = earliestDate;
@@ -93,7 +71,6 @@
       previousDate = dateObj;
     }
 
-    console.log(orderedDates[10].matchingPolls);
 
     // Calculate the mean poll data for each donation date
     orderedDates = _.map(orderedDates, function(dateObj) {
@@ -104,13 +81,13 @@
         var coalitionCount = 0;
 
         _.each(dateObj.matchingPolls, function(pollObj) {
-          laborSum += pollObj.labor;
+          laborSum += pollObj['ALP'];
           laborCount++;
 
-          coalitionSum += pollObj.coalition;
+          coalitionSum += pollObj['L-NP'];
           coalitionCount++;
-
           dateObj.laborPollPercentage = Math.floor(laborSum / laborCount);
+
           dateObj.coalitionPollPercentage = Math.floor(coalitionSum / coalitionCount);
         });
       }
@@ -123,6 +100,23 @@
     var paleRed = '#be7371';
     var blue = '#4572A7';
     var paleBlue = '#7294bc';
+
+    var laborDonations = _.pluck(orderedDates, 'laborDonations');
+    var coalitionDonations = _.pluck(orderedDates, 'coalitionDonations');
+    
+    var laborPollSeries = _.pluck(orderedDates, 'laborPollPercentage');
+    var coalitionPollSeries = _.pluck(orderedDates, 'coalitionPollPercentage');
+
+    var filteredLaborPollSeries = _.compact(laborPollSeries);
+    var filteredCoalitionPollSeries = _.compact(coalitionPollSeries);
+    var laborPollMax = _.max(filteredLaborPollSeries);
+    var coalitionPollMax = _.max(filteredCoalitionPollSeries);
+    var totalMax = _.max([laborPollMax, coalitionPollMax]);
+
+    var laborPollMin = _.min(filteredLaborPollSeries);
+    var coalitionPollMin = _.min(filteredCoalitionPollSeries);
+    var totalMin = _.min([laborPollMin, coalitionPollMin]);
+    console.log(laborPollMax, totalMax, totalMin)
 
     var defaultOptions = {
       chart: {
@@ -162,8 +156,8 @@
           title: {
             text: '2 Party Preferred Poll'
           },
-          max: 50,
-          min: 10,
+          max: totalMax,
+          min: totalMin - 5,
           opposite: true
         }
       ],
@@ -171,19 +165,19 @@
         name: 'Total donations to the ALP',
         color: red,
         type: 'column',
-        data: _.pluck(orderedDates, 'labourDonations')
+        data: laborDonations
       }, {
         name: 'Total donations to the Coalition',
         color: blue,
         type: 'column',
-        data: _.pluck(orderedDates, 'coalitionDonations')
+        data: coalitionDonations
       }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
         color: paleRed,
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'laborPollPercentage'),
+        data: laborPollSeries,
         marker: {
           enabled: false
         }
@@ -193,7 +187,7 @@
         color: paleBlue,
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
+        data: coalitionPollSeries,
         marker: {
           enabled: false
         }
@@ -210,14 +204,14 @@
         name: 'Total donations to the ALP',
         color: red,
         type: 'column',
-        data: _.pluck(orderedDates, 'labourDonations')
+        data: laborDonations
       }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
         color: paleRed,
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'laborPollPercentage'),
+        data: laborPollSeries,
         marker: {
           enabled: false
         }
@@ -232,14 +226,14 @@
         name: 'Total donations to the Coalition',
         color: blue,
         type: 'column',
-        data: _.pluck(orderedDates, 'coalitionDonations')
+        data: coalitionDonations
       }, {
         name: '2 Party Preferred - Coalition',
         type: 'spline',
         color: paleBlue,
         yAxis: 1,
         xAxis: 1,
-        data: _.pluck(orderedDates, 'coalitionPollPercentage'),
+        data: coalitionPollSeries,
         marker: {
           enabled: false
         }
