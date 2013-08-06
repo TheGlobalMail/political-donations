@@ -132,9 +132,21 @@
         {
           categories: _.pluck(orderedDates, 'dateString'),
           labels: {
-            rotation: -90,
-            step: 3,
-            y: 40
+            rotation: -45,
+            step: 2,
+            x: -10,
+            y: 30,
+            formatter: function() {
+              var splitString = this.value.split('-');
+              var month = {
+                '01': 'Jan',
+                '04': 'Apr',
+                '07': 'Jul',
+                '10': 'Oct'
+              }[splitString[1]];
+              var year = splitString[0];//.slice(1);
+              return month + ' ' + year;
+            }
           }
         },
         {
@@ -150,7 +162,20 @@
           title: {
             text: 'Donations'
           },
-          max: 10000000
+          max: 10000000,
+          labels: {
+            formatter: function() {
+              var rounded = parseFloat((this.value / 1000000).toFixed(1));
+              if (rounded % 1 === 0) {
+                rounded = rounded.toFixed(0);
+              }
+              if (rounded > 0) {
+                return '$' + rounded + 'm';
+              } else {
+                return '$0';
+              }
+            }
+          }
         }, { // Secondary yAxis
           gridLineWidth: 0,
           title: {
@@ -158,7 +183,12 @@
           },
           max: totalMax,
           min: totalMin - 5,
-          opposite: true
+          opposite: true,
+          labels: {
+            formatter: function() {
+              return this.value + '%';
+            }
+          }
         }
       ],
       series: [{
