@@ -108,12 +108,12 @@
   };
 
   var insertTwoPartyComparisonChart = function() {
-    var red = '#AA4643';
-    var paleRed = '#be7371';
     var brightRed ='#ab150f';
-    var blue = '#4572A7';
-    var paleBlue = '#7294bc';
+    var red = brightRed;
+    var paleRed = '#be7371';
     var brightBlue ='#024ea6';
+    var blue = brightBlue;
+    var paleBlue = '#7294bc';
     var paleGray = '#f6f6f6';
     var midGray = '#d5d4d4';
     var xAxisRed = brightRed;
