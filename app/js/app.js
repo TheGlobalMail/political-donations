@@ -110,12 +110,14 @@
   var insertTwoPartyComparisonChart = function() {
     var red = '#AA4643';
     var paleRed = '#be7371';
+    var brightRed ='#ab150f';
     var blue = '#4572A7';
     var paleBlue = '#7294bc';
+    var brightBlue ='#024ea6';
     var paleGray = '#f6f6f6';
     var midGray = '#d5d4d4';
-    var xAxisRed = red;
-    var xAxisBlue = blue;
+    var xAxisRed = brightRed;
+    var xAxisBlue = brightBlue;
     var gray = '#999999';
     var darkGray = '#333333';
     var fontStack = '"Open Sans", Helvetica, Arial, sans-serif';
@@ -187,9 +189,9 @@
               if (year !== lastYearChecked) {
                 lastYearChecked = year;
                 if (_.contains(coalitionElectionWins, year)) {
-                  return '<i style="color: ' + xAxisRed + ';">' + year + '</i>';
+                  return '<i style="font-weight: 900; color: ' + xAxisRed + ';">' + year + '</i>';
                 } else if (_.contains(laborElectionWins, year)) {
-                    return '<i style="color: ' + xAxisBlue + ';">' + year + '</i>';
+                    return '<i style="font-weight: 900; color: ' + xAxisBlue + ';">' + year + '</i>';
                 } else {
                   return '<i style="color: ' + defaultYearColour + ';">' + year + '</i>';
                 }

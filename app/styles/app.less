@@ -8,11 +8,15 @@
 @baseFontSize:    14px;
 @baseLineHeight:  20px;
 
+@brightRed: #ab150f;
+@brightBlue: #024ea6;
+
+
 
 .viz-title {
   font-weight: 900;
   text-transform: uppercase;
-  font-size: @baseFontSize * 4.6;
+  font-size: @baseFontSize * 5.5;
   line-height: @baseLineHeight * 3;
   letter-spacing: -1px;
   text-align: center;
@@ -22,7 +26,7 @@
 
 .viz-overview {
   border-bottom: 1px solid @grayLighter;
-  margin: 0 1em;
+  margin: 0 1em 2.5em 1em;
   p {
     text-align: center;
   }
@@ -33,7 +37,7 @@ h2 {
   margin: 1em 0 1em 1em;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.4em;
+  font-size: 1.3em;
   line-height: 1;
 }
 
@@ -57,17 +61,22 @@ body, section {
 	text-align: center;
 	color: @grayLight;
 	font-size: @baseFontSize * 0.8;
-	// font-weight: bold;
-	// font-style: italic;
-	// margin: 0 0 @baseLineHeight * 1.5 63px;
+	font-weight: normal;
 	margin: 0 0 @baseLineHeight * 1.5 0;
-	// padding: 0 0 @baseLineHeight 0;
-	em {
-		font-style: normal;
-		color: #333;
-
-	}
 }
+
+.coalition {
+	font-style: normal;
+	color: @brightBlue;
+	font-weight: bold;
+}
+
+.labor {
+	font-style: normal;
+	color: @brightRed;
+	font-weight: bold;
+}
+
 
 
 // footer
