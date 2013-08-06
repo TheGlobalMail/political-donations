@@ -22,6 +22,13 @@
         var splitString = obj.date.split('-');
         var date = new Date(splitString[0], splitString[1], splitString[2]);
 
+        if (
+          date.getFullYear() < 1998 ||
+          date.getFullYear() > 2012
+        ) {
+          return;
+        }
+
         dates[obj.date] = {
           date: date,
           dateString: obj.date,
@@ -135,14 +142,15 @@
         text: null
       },
       legend: {
-        borderWidth: 0,
-        layout: 'vertical',
-        itemStyle: {
-          color: darkGray,
-          fontWeight: 'bold',
-          fontStyle: 'italic',
-          fontFamily: fontStack
-        }
+        enabled: false
+//        borderWidth: 0,
+//        layout: 'vertical',
+//        itemStyle: {
+//          color: darkGray,
+//          fontWeight: 'bold',
+//          fontStyle: 'italic',
+//          fontFamily: fontStack
+//        }
       },
 
       plotOptions: {
@@ -157,19 +165,12 @@
           categories: _.pluck(orderedDates, 'dateString'),
           labels: {
             rotation: -45,
-            step: 3,
-            x: -10,
-            y: 30,
+            step: 4,
+            x: -3,
+            y: 25,
             formatter: function() {
               var splitString = this.value.split('-');
-              var month = {
-                '01': 'Jan',
-                '04': 'Apr',
-                '07': 'Jul',
-                '10': 'Oct'
-              }[splitString[1]];
-              var year = splitString[0];//.slice(1);
-              return month + ' ' + year;
+              return splitString[0];
             },
             style: {
               color: darkGray,
