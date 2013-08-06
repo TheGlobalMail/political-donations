@@ -184,14 +184,14 @@
               var date = this.value;
               var splitString = date.split('-');
               var year = splitString[0];
-              var coalitionElectionWins = ['1998', '2001', '2004', ];
+              var coalitionElectionWins = ['1998', '2001', '2004'];
               var laborElectionWins = ['2007', '2010'];
               if (year !== lastYearChecked) {
                 lastYearChecked = year;
                 if (_.contains(coalitionElectionWins, year)) {
-                  return '<i style="font-weight: 900; color: ' + xAxisRed + ';">' + year + '</i>';
+                  return '<i style="font-weight: 900; color: ' + xAxisBlue + ';">' + year + '</i>';
                 } else if (_.contains(laborElectionWins, year)) {
-                    return '<i style="font-weight: 900; color: ' + xAxisBlue + ';">' + year + '</i>';
+                    return '<i style="font-weight: 900; color: ' + xAxisRed + ';">' + year + '</i>';
                 } else {
                   return '<i style="color: ' + defaultYearColour + ';">' + year + '</i>';
                 }
