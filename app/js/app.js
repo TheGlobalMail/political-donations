@@ -136,7 +136,8 @@
     var defaultOptions = {
       chart: {
         type: 'column',
-        backgroundColor: '#f6f6f6'
+        backgroundColor: '#f6f6f6',
+        height: 300
       },
       credits: {
         enabled: false
@@ -269,18 +270,18 @@
 //      },
       series: [{
         name: 'Total donations to the ALP',
-        color: paleRed,
+        color: red,
         type: 'column',
         data: laborDonations
       }, {
         name: 'Total donations to the Coalition',
-        color: paleBlue,
+        color: blue,
         type: 'column',
         data: coalitionDonations
       }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
-        color: red,
+        color: paleRed,
         yAxis: 1,
         xAxis: 1,
         data: laborPollSeries,
@@ -290,7 +291,7 @@
       }, {
         name: '2 Party Preferred - Coalition',
         type: 'spline',
-        color: blue,
+        color: paleBlue,
         yAxis: 1,
         xAxis: 1,
         data: coalitionPollSeries,
@@ -306,13 +307,13 @@
 
       series: [{
         name: 'Total donations to the Coalition',
-        color: blue,
+        color: paleBlue,
         type: 'column',
         data: coalitionDonations
       }, {
         name: '2 Party Preferred - Coalition',
         type: 'spline',
-        color: paleBlue,
+        color: blue,
         yAxis: 1,
         xAxis: 1,
         data: coalitionPollSeries,
@@ -325,13 +326,13 @@
     $('#labor-container').highcharts(_.extend(defaultOptions, {
       series: [{
         name: 'Total donations to the ALP',
-        color: red,
+        color: paleRed,
         type: 'column',
         data: laborDonations
       }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
-        color: paleRed,
+        color: red,
         yAxis: 1,
         xAxis: 1,
         data: laborPollSeries,
