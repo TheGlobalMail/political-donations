@@ -205,6 +205,13 @@
           }
         }
       ],
+//      tooltip: {
+//        formatter: function() {
+//          console.log(this);
+//          return 'The value for <b>'+ this.x +
+//            '</b> is <b>'+ this.y +'</b>';
+//        }
+//      },
       series: [{
         name: 'Total donations to the ALP',
         color: paleRed,
