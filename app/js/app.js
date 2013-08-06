@@ -100,6 +100,11 @@
     var paleRed = '#be7371';
     var blue = '#4572A7';
     var paleBlue = '#7294bc';
+    var paleGray = '#f6f6f6';
+    var midGray = '#d5d4d4';
+    var gray = '#999999';
+    var darkGray = '#333333';
+    var fontStack = '"Open Sans", Helvetica, Arial, sans-serif'
 
     var laborDonations = _.pluck(orderedDates, 'laborDonations');
     var coalitionDonations = _.pluck(orderedDates, 'coalitionDonations');
@@ -127,11 +132,17 @@
         enabled: false
       },
       title: {
-        text: 'Donations VS Two-party preferred'
+        text: null
       },
       legend: {
         borderWidth: 0,
-        layout: 'vertical'
+        layout: 'vertical',
+        itemStyle: {
+          color: darkGray,
+          fontWeight: 'bold',
+          fontStyle: 'italic',
+          fontFamily: fontStack
+        }
       },
 
       plotOptions: {
@@ -159,6 +170,11 @@
               }[splitString[1]];
               var year = splitString[0];//.slice(1);
               return month + ' ' + year;
+            },
+            style: {
+              color: darkGray,
+              fontWeight: 'bold',
+              fontFamily: fontStack
             }
           }
         },
@@ -174,10 +190,21 @@
       yAxis: [
         { // Primary yAxis
           title: {
-            text: 'Donations'
+            text: 'Donations',
+            style: {
+              color: gray,
+              fontWeight: 'bold',
+              fontFamily: fontStack,
+              textTransform: 'uppercase'
+            }            
           },
           max: 10000000,
           labels: {
+            style: {
+              color: darkGray,
+              fontWeight: 'bold',
+              fontFamily: fontStack
+            },
             formatter: function() {
               var rounded = parseFloat((this.value / 1000000).toFixed(1));
               if (rounded % 1 === 0) {
@@ -193,12 +220,25 @@
         }, { // Secondary yAxis
           gridLineWidth: 0,
           title: {
-            text: '2 Party Preferred Poll'
+            text: '2 Party Preferred Poll',
+            rotation: -90,
+            offset: 50,
+            style: {
+              color: gray,
+              fontWeight: 'bold',
+              fontFamily: fontStack,
+              textTransform: 'uppercase'
+            }            
           },
           max: totalMax,
           min: totalMin - 5,
           opposite: true,
           labels: {
+            style: {
+              color: darkGray,
+              fontWeight: 'bold',
+              fontFamily: fontStack
+            },            
             formatter: function() {
               return this.value + '%';
             }
