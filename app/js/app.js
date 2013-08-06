@@ -112,6 +112,8 @@
     var gray = '#999999';
     var darkGray = '#333333';
     var fontStack = '"Open Sans", Helvetica, Arial, sans-serif';
+    var electionYearColour = darkGray;
+    var defaultYearColour = gray;
 
     var laborDonations = _.pluck(orderedDates, 'laborDonations');
     var coalitionDonations = _.pluck(orderedDates, 'coalitionDonations');
@@ -176,9 +178,9 @@
               if (year !== lastYearChecked) {
                 lastYearChecked = year;
                 if (_.contains(electionsQuarters, year)) {
-                  return '<i style="color: grey;">' + year + '</i>';
+                  return '<i style="color: ' + electionYearColour + ';">' + year + '</i>';
                 } else {
-                  return '<i style="color: lightgrey;">' + year + '</i>';;
+                  return '<i style="color: ' + defaultYearColour + ';">' + year + '</i>';;
                 }
               } else {
                 return '';
