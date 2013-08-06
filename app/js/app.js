@@ -198,15 +198,13 @@
               textTransform: 'uppercase'
             }            
           },
+          max: 10000000,
           labels: {
             style: {
               color: darkGray,
               fontWeight: 'bold',
               fontFamily: fontStack
-            }            
-          },
-          max: 10000000,
-          labels: {
+            },
             formatter: function() {
               var rounded = parseFloat((this.value / 1000000).toFixed(1));
               if (rounded % 1 === 0) {
