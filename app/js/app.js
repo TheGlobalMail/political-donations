@@ -111,7 +111,7 @@
     var midGray = '#d5d4d4';
     var gray = '#999999';
     var darkGray = '#333333';
-    var fontStack = '"Open Sans", Helvetica, Arial, sans-serif'
+    var fontStack = '"Open Sans", Helvetica, Arial, sans-serif';
 
     var laborDonations = _.pluck(orderedDates, 'laborDonations');
     var coalitionDonations = _.pluck(orderedDates, 'coalitionDonations');
@@ -128,7 +128,8 @@
     var laborPollMin = _.min(filteredLaborPollSeries);
     var coalitionPollMin = _.min(filteredCoalitionPollSeries);
     var totalMin = _.min([laborPollMin, coalitionPollMin]);
-    console.log(laborPollMax, totalMax, totalMin)
+
+    var lastYearChecked;
 
     var defaultOptions = {
       chart: {
@@ -165,12 +166,23 @@
           categories: _.pluck(orderedDates, 'dateString'),
           labels: {
             rotation: -45,
-            step: 4,
             x: -3,
             y: 25,
             formatter: function() {
-              var splitString = this.value.split('-');
-              return splitString[0];
+              var date = this.value;
+              var splitString = date.split('-');
+              var year = splitString[0];
+              var electionsQuarters = ['1998', '2001', '2004', '2007', '2010'];
+              if (year !== lastYearChecked) {
+                lastYearChecked = year;
+                if (_.contains(electionsQuarters, year)) {
+                  return '<i style="color: grey;">' + year + '</i>';
+                } else {
+                  return '<i style="color: lightgrey;">' + year + '</i>';;
+                }
+              } else {
+                return '';
+              }
             },
             style: {
               color: darkGray,
@@ -308,7 +320,16 @@
           enabled: false
         }
       }]
-    }));
+    }), function(chart){
+//      console.log(1)
+//      debugger
+//      chart.renderer.path(['M', 0, 0, 'L',100, 200])
+//        .attr({
+//          'stroke-width': 1,
+//          stroke: 'black'
+//        })
+//        .add();
+    });
 
     $('#labor-container').highcharts(_.extend(defaultOptions, {
 //      title: {
