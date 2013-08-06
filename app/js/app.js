@@ -285,51 +285,51 @@
       }]
     };
 
-    $('#two-party-comparison-container').highcharts(defaultOptions);
+//    $('#two-party-comparison-container').highcharts(defaultOptions);
 
-//    $('#labor-container').highcharts(_.extend(defaultOptions, {
-//      title: {
-//        text: 'LABOR - Donations VS Two-party preferred'
-//      },
-//      series: [{
-//        name: 'Total donations to the ALP',
-//        color: red,
-//        type: 'column',
-//        data: laborDonations
-//      }, {
-//        name: '2 Party Preferred - Labor',
-//        type: 'spline',
-//        color: paleRed,
-//        yAxis: 1,
-//        xAxis: 1,
-//        data: laborPollSeries,
-//        marker: {
-//          enabled: false
-//        }
-//      }]
-//    }));
-//
-//    $('#coalition-container').highcharts(_.extend(defaultOptions, {
+    $('#coalition-container').highcharts(_.extend(defaultOptions, {
 //      title: {
 //        text: 'COALITION - Donations VS Two-party preferred'
 //      },
-//      series: [{
-//        name: 'Total donations to the Coalition',
-//        color: blue,
-//        type: 'column',
-//        data: coalitionDonations
-//      }, {
-//        name: '2 Party Preferred - Coalition',
-//        type: 'spline',
-//        color: paleBlue,
-//        yAxis: 1,
-//        xAxis: 1,
-//        data: coalitionPollSeries,
-//        marker: {
-//          enabled: false
-//        }
-//      }]
-//    }));
+      series: [{
+        name: 'Total donations to the Coalition',
+        color: blue,
+        type: 'column',
+        data: coalitionDonations
+      }, {
+        name: '2 Party Preferred - Coalition',
+        type: 'spline',
+        color: paleBlue,
+        yAxis: 1,
+        xAxis: 1,
+        data: coalitionPollSeries,
+        marker: {
+          enabled: false
+        }
+      }]
+    }));
+
+    $('#labor-container').highcharts(_.extend(defaultOptions, {
+//      title: {
+//        text: 'LABOR - Donations VS Two-party preferred'
+//      },
+      series: [{
+        name: 'Total donations to the ALP',
+        color: red,
+        type: 'column',
+        data: laborDonations
+      }, {
+        name: '2 Party Preferred - Labor',
+        type: 'spline',
+        color: paleRed,
+        yAxis: 1,
+        xAxis: 1,
+        data: laborPollSeries,
+        marker: {
+          enabled: false
+        }
+      }]
+    }));
   };
 
   var init = function() {
