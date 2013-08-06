@@ -265,7 +265,7 @@
         }, { // Secondary yAxis
           gridLineWidth: 0,
           title: {
-            text: 'Two Party Preferred Vote',
+            text: 'Two-Party Preferred Vote',
             rotation: -90,
             offset: 50,
             style: {
