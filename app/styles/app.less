@@ -1,3 +1,26 @@
+@white:           #fff;
+@black:           #111;
+@gray:            #666;
+@grayLight:       #999;
+@grayLighter:     #ddd;
+@grayLightest:    #f6f6f6;
+@sansFontFamily:  "open-sans", "Open Sans", Helvetica, Arial, sans-serif;
+@baseFontSize:    14px;
+@baseLineHeight:  20px;
+
+
+.viz-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: @baseFontSize * 4.8;
+  line-height: @baseLineHeight * 3;
+  letter-spacing: -1px;
+  text-align: center;
+  color: @grayLight;
+  margin: 0;
+}
+
+
 h2 {
   margin: 1em 0 1em 1em;
   text-align: center;
@@ -8,6 +31,10 @@ h2 {
 
 body {
 	background: #f6f6f6;
+  	font-family: @sansFontFamily;
+  	font-size: @baseFontSize; 
+  	line-height: @baseLineHeight;
+	padding: 10px;
 }
 
 section {
@@ -18,9 +45,55 @@ body, section {
 	margin: 0;
 }
 
-.kitty-chan {
-  width: 503px;
-  height: 403px;
-  margin: 300px auto 0 auto;
-  background-image: url('/images/rainbows-cat.jpg');
+
+// footer
+
+.credit {
+margin: @baseLineHeight;
+  border-top: 1px solid #ccc;
+  padding-top: @baseLineHeight - 1;
+}
+
+.source,
+.tgm-watermark {
+  display: block;
+}
+
+.credit .special-feature-misc {
+  width: 90px;
+  float: left;
+  display: none;
+}
+
+.source {
+  width: 67%;
+  margin: 0;
+  float: left;
+  color: @grayLight;
+  font-size: @baseFontSize * 0.75;
+  line-height: @baseLineHeight * .75;
+  a {
+    color: @gray;
+    &:hover {
+      color: @black;
+    };
+  }
+}
+
+.tgm-watermark {
+  width: auto;
+  float: right;
+  color: #333;
+  text-decoration: none;
+  line-height: @baseLineHeight;
+  font-size: @baseFontSize;
+  padding: (@baseLineHeight * .7) / 2 0;
+  padding-left: 38px;
+  background: url(/images/tgm-logo-30px.png) left center no-repeat;
+  text-align: right;
+  font-weight: 500;
+  &:hover {
+    color: @black;
+    text-decoration: underline;
+  }
 }
