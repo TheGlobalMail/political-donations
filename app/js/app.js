@@ -230,17 +230,15 @@
               textTransform: 'uppercase'
             }            
           },
+          max: totalMax,
+          min: totalMin - 5,
+          opposite: true,
           labels: {
             style: {
               color: darkGray,
               fontWeight: 'bold',
               fontFamily: fontStack
-            }            
-          },
-          max: totalMax,
-          min: totalMin - 5,
-          opposite: true,
-          labels: {
+            },            
             formatter: function() {
               return this.value + '%';
             }
