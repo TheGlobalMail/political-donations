@@ -248,7 +248,7 @@
         }, { // Secondary yAxis
           gridLineWidth: 0,
           title: {
-            text: '2 Party Preferred Poll',
+            text: 'Two Party Preferred Vote',
             rotation: -90,
             offset: 50,
             style: {
@@ -291,7 +291,7 @@
         type: 'column',
         data: coalitionDonations
       }, {
-        name: '2 Party Preferred - Labor',
+        name: 'Two-Party Preferred - Labor',
         type: 'spline',
         color: paleRed,
         yAxis: 1,
@@ -301,7 +301,7 @@
           enabled: false
         }
       }, {
-        name: '2 Party Preferred - Coalition',
+        name: 'Two-Party Preferred - Coalition',
         type: 'spline',
         color: paleBlue,
         yAxis: 1,
@@ -323,7 +323,7 @@
         type: 'column',
         data: coalitionDonations
       }, {
-        name: '2 Party Preferred - Coalition',
+        name: 'Two-Party Preferred - Coalition',
         type: 'spline',
         color: blue,
         yAxis: 1,
@@ -342,7 +342,7 @@
         type: 'column',
         data: laborDonations
       }, {
-        name: '2 Party Preferred - Labor',
+        name: 'Two-Party Preferred - Labor',
         type: 'spline',
         color: red,
         yAxis: 1,
