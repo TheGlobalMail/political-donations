@@ -146,7 +146,7 @@
           categories: _.pluck(orderedDates, 'dateString'),
           labels: {
             rotation: -45,
-            step: 2,
+            step: 3,
             x: -10,
             y: 30,
             formatter: function() {
