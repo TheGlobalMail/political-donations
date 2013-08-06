@@ -109,6 +109,8 @@
     var paleBlue = '#7294bc';
     var paleGray = '#f6f6f6';
     var midGray = '#d5d4d4';
+    var xAxisRed = red;
+    var xAxisBlue = blue;
     var gray = '#999999';
     var darkGray = '#333333';
     var fontStack = '"Open Sans", Helvetica, Arial, sans-serif';
@@ -174,13 +176,16 @@
               var date = this.value;
               var splitString = date.split('-');
               var year = splitString[0];
-              var electionsQuarters = ['1998', '2001', '2004', '2007', '2010'];
+              var coalitionElectionWins = ['1998', '2001', '2004', ];
+              var laborElectionWins = ['2007', '2010'];
               if (year !== lastYearChecked) {
                 lastYearChecked = year;
-                if (_.contains(electionsQuarters, year)) {
-                  return '<i style="color: ' + electionYearColour + ';">' + year + '</i>';
+                if (_.contains(coalitionElectionWins, year)) {
+                  return '<i style="color: ' + xAxisRed + ';">' + year + '</i>';
+                } else if (_.contains(laborElectionWins, year)) {
+                    return '<i style="color: ' + xAxisBlue + ';">' + year + '</i>';
                 } else {
-                  return '<i style="color: ' + defaultYearColour + ';">' + year + '</i>';;
+                  return '<i style="color: ' + defaultYearColour + ';">' + year + '</i>';
                 }
               } else {
                 return '';
