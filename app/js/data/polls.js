@@ -580,4 +580,12 @@ tgm.data.polls = [
   {"dateString":"1998-02-12","ALP":52.5,"L-NP":47.5},
   {"dateString":"1998-01-29","ALP":52.5,"L-NP":47.5},
   {"dateString":"1998-01-15","ALP":52,"L-NP":48},
+
+  // 1997
+  {"dateString":"1997-12-11","ALP":48.5,"L-NP":51.5},
+  {"dateString":"1997-11-27","ALP":54.5,"L-NP":45.5},
+  {"dateString":"1997-11-13","ALP":53.5,"L-NP":46.5},
+  {"dateString":"1997-10-30","ALP":53.5,"L-NP":46.5},
+  {"dateString":"1997-10-16","ALP":53,"L-NP":47},
+  {"dateString":"1997-10-09","ALP":42.5,"L-NP":57.5}
 ];

@@ -9,8 +9,6 @@
     // { ... }
   ];
 
-  var earliestDate;
-
   var polls = {};
 
   var orderedPolls = [];
@@ -23,8 +21,8 @@
         var date = new Date(splitString[0], splitString[1], splitString[2]);
 
         if (
-          date.getFullYear() < 1998 ||
-          date.getFullYear() > 2012
+          date.getFullYear() <= 1997 ||
+          (date.getFullYear() >= 2012 && date.getMonth() > 4)
         ) {
           return;
         }
@@ -35,7 +33,8 @@
           laborDonations: 0,
           coalitionDonations: 0,
           laborPollPercentage: null,
-          coalitionPollPercentage: null
+          coalitionPollPercentage: null,
+          matchingPolls: []
         };
       }
 
@@ -54,8 +53,6 @@
       return +obj.date;
     });
 
-    earliestDate = orderedDates[0].date;
-
     orderedPolls = _(tgm.data.polls).map(function(obj) {
       var splitString = obj.dateString.split('-');
       obj.date = new Date(splitString[0], splitString[1], splitString[2]);
@@ -65,14 +62,22 @@
     }).value();
 
     // Group the poll data by donation data point
-    var previousDate = earliestDate;
+
+    // Map the poll records to the first date
+    var previousDateObj = orderedDates[0];
+    _.each(orderedPolls, function(pollObj) {
+      if (pollObj.date < previousDateObj.date) {
+        previousDateObj.matchingPolls.push(pollObj);
+      }
+    });
+    // Map the poll records to the successive dates
+    var previousDate = previousDateObj.date;
     for (var i = 0; i < orderedDates.length; i++) {
       var dateObj = orderedDates[i];
-      dateObj.matchingPolls = [];
       for (var j = 0; j < orderedPolls.length; j++) {
         var pollObj = orderedPolls[j];
-        if (previousDate.date <= pollObj.date && dateObj.date > pollObj.date) {
-          previousDate.matchingPolls.push(pollObj);
+        if (previousDate.date < pollObj.date && dateObj.date > pollObj.date) {
+          dateObj.matchingPolls.push(pollObj);
         }
       }
       previousDate = dateObj;
