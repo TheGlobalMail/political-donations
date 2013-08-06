@@ -303,9 +303,7 @@
 //    $('#two-party-comparison-container').highcharts(defaultOptions);
 
     $('#coalition-container').highcharts(_.extend(defaultOptions, {
-//      title: {
-//        text: 'COALITION - Donations VS Two-party preferred'
-//      },
+
       series: [{
         name: 'Total donations to the Coalition',
         color: blue,
@@ -322,21 +320,9 @@
           enabled: false
         }
       }]
-    }), function(chart){
-//      console.log(1)
-//      debugger
-//      chart.renderer.path(['M', 0, 0, 'L',100, 200])
-//        .attr({
-//          'stroke-width': 1,
-//          stroke: 'black'
-//        })
-//        .add();
-    });
+    }));
 
     $('#labor-container').highcharts(_.extend(defaultOptions, {
-//      title: {
-//        text: 'LABOR - Donations VS Two-party preferred'
-//      },
       series: [{
         name: 'Total donations to the ALP',
         color: red,
