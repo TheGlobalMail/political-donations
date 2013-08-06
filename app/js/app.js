@@ -181,7 +181,7 @@
             x: -3,
             y: 25,
             formatter: function() {
-              var date = this.value;
+              var date = this.value + '';
               var splitString = date.split('-');
               var year = splitString[0];
               var coalitionElectionWins = ['1998', '2001', '2004'];
@@ -204,7 +204,14 @@
               fontWeight: 'bold',
               fontFamily: fontStack
             }
-          }
+          },
+//          tickPositions: _.range(0, orderedDates.length, 4)
+//          tickPositioner: function() {
+//            return ['2008-01-01', '2010-01-01']
+//            return _.map(_.range(1998, 2013), function(num) {
+//              return '' + num;
+//            });
+//          }
         },
         {
           opposite: true,
