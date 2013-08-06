@@ -120,13 +120,26 @@
 
     var defaultOptions = {
       chart: {
-        type: 'column'
+        type: 'column',
+        backgroundColor: '#f6f6f6'
       },
       credits: {
         enabled: false
       },
       title: {
         text: 'Donations VS Two-party preferred'
+      },
+      legend: {
+        borderWidth: 0,
+        layout: 'vertical'
+      },
+
+      plotOptions: {
+        column: {
+          pointPadding: 0,
+          groupPadding: 0,
+          borderWidth: 0
+        }
       },
       xAxis: [
         {
@@ -151,6 +164,7 @@
         },
         {
           opposite: true,
+          tickLength: 0,
           categories: _.pluck(orderedDates, 'dateString'),
           labels: {
             enabled: false
@@ -193,18 +207,18 @@
       ],
       series: [{
         name: 'Total donations to the ALP',
-        color: red,
+        color: paleRed,
         type: 'column',
         data: laborDonations
       }, {
         name: 'Total donations to the Coalition',
-        color: blue,
+        color: paleBlue,
         type: 'column',
         data: coalitionDonations
       }, {
         name: '2 Party Preferred - Labor',
         type: 'spline',
-        color: paleRed,
+        color: red,
         yAxis: 1,
         xAxis: 1,
         data: laborPollSeries,
@@ -214,7 +228,7 @@
       }, {
         name: '2 Party Preferred - Coalition',
         type: 'spline',
-        color: paleBlue,
+        color: blue,
         yAxis: 1,
         xAxis: 1,
         data: coalitionPollSeries,
