@@ -120,6 +120,7 @@
     var xAxisBlue = brightBlue;
     var gray = '#999999';
     var darkGray = '#333333';
+    var paleGray = '#f6f6f6';
     var fontStack = '"Open Sans", Helvetica, Arial, sans-serif';
     var electionYearColour = darkGray;
     var defaultYearColour = gray;
@@ -145,7 +146,7 @@
     var defaultOptions = {
       chart: {
         type: 'column',
-        backgroundColor: '#f6f6f6',
+        backgroundColor: paleGray,
         height: 300
       },
       credits: {
@@ -164,6 +165,15 @@
 //          fontStyle: 'italic',
 //          fontFamily: fontStack
 //        }
+      },
+      tooltip: {
+        borderColor: gray,
+        backgroundColor: paleGray,
+        style: {
+         color: darkGray,
+         fontWeight: 'bold',
+         fontFamily: fontStack          
+        }
       },
 
       plotOptions: {
